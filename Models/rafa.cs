@@ -1,6 +1,6 @@
 namespace ProgramaRafaAnass.Models
 {
-    namespace ApiYTSearch{
+    namespace APIDownload{
         public class Audios
             {
                 public bool status { get; set; }
@@ -105,9 +105,9 @@ namespace ProgramaRafaAnass.Models
 
     }
 
-    namespace ApiYTDownloadURL{
+    namespace APISearch{
         // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-            public class RootYTDownload
+            public class Root
             {
                 public int number_of_videos { get; set; }
                 public string query { get; set; }
@@ -152,8 +152,8 @@ namespace ProgramaRafaAnass.Models
 
     
 
-        // Clases para API2
-        namespace API2
+        // Clases para APIArtists
+        namespace APIArtists
         {
             public class ChartItem
             {
@@ -185,7 +185,7 @@ namespace ProgramaRafaAnass.Models
         }
 
 
- namespace API3{
+ namespace APISongs{
         // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class ChartItem3
     {
@@ -264,7 +264,7 @@ namespace ProgramaRafaAnass.Models
         public int day { get; set; }
     }
 
-    public class Root3
+    public class Root
     {
         public List<ChartItem3> chart_items { get; set; }
         public int next_page { get; set; }
@@ -290,13 +290,13 @@ namespace ProgramaRafaAnass.Models
         // Clase Trend que combina los datos de ambas APIs
         public class Trend
         {
-            public API2.Root ClassDos { get; set; }
+            public APIArtists.Root ClassDos { get; set; }
 
-            public ApiYTSearch.Root ClassYTSearch{ get; set;}
+            public APIDownload.Root ClassYTSearch{ get; set;}
 
-            public ApiYTDownloadURL.RootYTDownload ClassYTDownload{get; set;}
+            public APISearch.Root ClassYTDownload{get; set;}
 
-            public API3.Root3 ClassTres{get; set;}
+            public APISongs.Root ClassTres{get; set;}
 
             public APILyrics.Root ClassLyrics { get; set; }
         }
