@@ -49,7 +49,7 @@ namespace ProgramaRafaAnass.Controllers
 
         public async Task<IActionResult> Index()
         {
-            ProgramaRafaAnass.Models.API3.Root3 chartData = null!;
+            ProgramaRafaAnass.Models.APISongs.Root  chartData = null!;
             var requestUri = new Uri("https://genius-song-lyrics1.p.rapidapi.com/chart/songs/?time_period=day&per_page=20&page=1");
 
             HttpResponseMessage response = null;
@@ -70,7 +70,7 @@ namespace ProgramaRafaAnass.Controllers
             }
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            chartData = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.API3.Root3>(responseBody)!;
+            chartData = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.APISongs.Root >(responseBody)!;
 
             return View(chartData);
         }
@@ -105,7 +105,7 @@ namespace ProgramaRafaAnass.Controllers
             }
 
             var youtubeSearchBody = await youtubeSearchResponse.Content.ReadAsStringAsync();
-            var ytSearchObject = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.ApiYTDownloadURL.RootYTDownload>(youtubeSearchBody);
+            var ytSearchObject = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.APISearch.Root>(youtubeSearchBody);
 
             if (ytSearchObject?.videos != null && ytSearchObject.videos.Count > 0)
             {
@@ -136,7 +136,7 @@ namespace ProgramaRafaAnass.Controllers
                 }
 
                 var youtubeDownloadBody = await youtubeDownloadResponse.Content.ReadAsStringAsync();
-                var ytDownloadObject = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.ApiYTSearch.Root>(youtubeDownloadBody);
+                var ytDownloadObject = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.APIDownload.Root>(youtubeDownloadBody);
 
                 if (ytDownloadObject != null && ytDownloadObject.audios != null && ytDownloadObject.audios.items.Count > 0)
                 {
@@ -149,7 +149,7 @@ namespace ProgramaRafaAnass.Controllers
 
         public async Task<IActionResult> Privacy()
         {
-            ProgramaRafaAnass.Models.API2.Root chartData1 = null!;
+            ProgramaRafaAnass.Models.APIArtists.Root chartData1 = null!;
             var requestUri = new Uri("https://genius-song-lyrics1.p.rapidapi.com/chart/artists/?per_page=30&page=1");
 
             HttpResponseMessage response = null;
@@ -170,7 +170,7 @@ namespace ProgramaRafaAnass.Controllers
             }
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            chartData1 = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.API2.Root>(responseBody)!;
+            chartData1 = JsonConvert.DeserializeObject<ProgramaRafaAnass.Models.APIArtists.Root>(responseBody)!;
 
             return View(chartData1);
         }
